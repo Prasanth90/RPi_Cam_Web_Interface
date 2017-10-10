@@ -202,6 +202,7 @@ var cameraState = "ready";
 
 function saveScreenShot() {
 			var orderId = document.getElementById("orderid").value;
+			console.log(orderId);
 			$.ajax({
 			  type: "POST",
 			  url: window.location.origin + ":5000/screenshot",
@@ -224,18 +225,19 @@ ajax_status.onreadystatechange = function() {
   if(ajax_status.readyState == 4 && ajax_status.status == 200) {
 
     if(ajax_status.responseText == "ready") {
-		$("captured_images").attr("href","http://192.168.0.110");
+		if(cameraState == "captured") {
+		  console.log("Capturing screenshot");
+		  saveScreenShot();
+		  console.log("Ajax request sent");
+		  cameraState = "ready";
+	  }
       //document.getElementById("video_button").disabled = false;
       //document.getElementById("video_button").value = "record video start";
       //document.getElementById("video_button").onclick = function() {send_cmd("ca 1");};
       document.getElementById("image_button").disabled = false;
       document.getElementById("image_button").value = "record image";
-      document.getElementById("image_button").onclick = function() { console.log("clicked"); send_cmd("im");};
-      if(cameraState == "captured") {
-		  console.log("Capturing screenshot");
-		  saveScreenShot();
-		  cameraState = "ready";
-	  }
+      document.getElementById("image_button").onclick = function() { console.log("clicked"); send_cmd("im");cameraState = "captured";console.log("Done with send_cmd");};
+      
       //document.getElementById("timelapse_button").disabled = false;
       //document.getElementById("timelapse_button").value = "timelapse start";
       //document.getElementById("timelapse_button").onclick = function() {send_cmd("tl 1");};
@@ -385,7 +387,6 @@ ajax_status.onreadystatechange = function() {
       //document.getElementById("video_button").onclick = function() {};
       document.getElementById("image_button").disabled = true;
       document.getElementById("image_button").value = "recording image";
-      cameraState = "captured";
       document.getElementById("image_button").onclick = function() {};
       //document.getElementById("timelapse_button").disabled = true;
       //document.getElementById("timelapse_button").value = "timelapse start";
