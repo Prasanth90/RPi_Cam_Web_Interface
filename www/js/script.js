@@ -202,13 +202,15 @@ var cameraState = "ready";
 
 function saveScreenShot() {
 			var orderId = document.getElementById("orderid").value;
+			var stageId = document.getElementById("stageid").value;
 			console.log(orderId);
 			$.ajax({
 			  type: "POST",
 			  url: window.location.origin + ":5000/screenshot",
 			  success : handleData,
 			  data:{
-			    orderid: orderId
+			    orderid: orderId,
+			    stageid: stageId,
 			  }
 			}).done(function() {
 			  console.log('Request sent');
@@ -235,7 +237,7 @@ ajax_status.onreadystatechange = function() {
       //document.getElementById("video_button").value = "record video start";
       //document.getElementById("video_button").onclick = function() {send_cmd("ca 1");};
       document.getElementById("image_button").disabled = false;
-      document.getElementById("image_button").value = "record image";
+      document.getElementById("image_button").value = "Capture";
       document.getElementById("image_button").onclick = function() { console.log("clicked"); send_cmd("im");cameraState = "captured";console.log("Done with send_cmd");};
       
       //document.getElementById("timelapse_button").disabled = false;

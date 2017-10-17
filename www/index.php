@@ -257,7 +257,7 @@
 <html>
    <head>
       <meta name="viewport" content="width=550, initial-scale=1">
-      <title><?php echo CAM_STRING; ?></title>
+      <title>ANFIBIO - EXPERIENCE</title>
       <link rel="stylesheet" href="css/style_minified.css" />
       <link rel="stylesheet" href="<?php echo getStyle(); ?>" />
       <script src="js/style_minified.js"></script>
@@ -268,7 +268,7 @@
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" <?php getdisplayStyle('navbar', $userLevel); ?>>
          <div class="container">
             <div class="navbar-header">
-               <a class="navbar-brand" href="#"><?php echo CAM_STRING; ?></a>
+               <a class="navbar-brand" href="#">ANFIBIO - EXPERIENCE</a>
             </div>
          </div>
       </div>
@@ -280,7 +280,9 @@
 <!--
             <input id="video_button" type="button" class="btn btn-primary" <?php getdisplayStyle('actions', $userLevel); ?>>
 -->
-			<input id="orderid" style="vertical-align: middle;" type="text" name="order" <?php getdisplayStyle('actions', $userLevel); ?>>
+			<input id="orderid" style="vertical-align: middle;" type="text" name="order" value="<?php echo $_GET['orderid']; ?>"<?php getdisplayStyle('actions', $userLevel); ?>>
+			<input id="stageid" style="vertical-align: middle;" type="text" name="stage" value="<?php echo $_GET['stageid']; ?>"  <?php getdisplayStyle('actions', $userLevel); ?>>
+
             <input id="image_button" type="button" class="btn btn-primary" <?php getdisplayStyle('actions', $userLevel); ?>>
 <!--
             <input id="timelapse_button" type="button" class="btn btn-primary" <?php getdisplayStyle('actions', $userLevel); ?>>
@@ -291,8 +293,6 @@
       </div>
       <div id="secondary-buttons" class="container-fluid text-center">
          <?php pan_controls(); ?>
-         <a href="preview.php" class="btn btn-default" <?php getdisplayStyle('actions', $userLevel); ?>>Media</a>
-         <a id="captured_images"  href='<?php echo get_images_url() ?>' class="btn btn-default" <?php getdisplayStyle('actions', $userLevel); ?>>Order IDs</a>
 <!--
          &nbsp;&nbsp;
          <?php  if($config['motion_external'] == '1'): ?><a href="motion.php" class="btn btn-default" <?php getdisplayStyle('settings', $userLevel); ?>>Edit motion settings</a>&nbsp;&nbsp;<?php endif; ?>
